@@ -1,0 +1,239 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ggnc
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ggnc is to ...
+
+## Installation
+
+You can install the development version of ggnc from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("EvaMaeRey/ggnc")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(tidyverse)
+library(ggnc)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r}
+nc %>% 
+  ggplot() + 
+  geom_sf() ->
+classic_approach
+
+classic_approach
+```
+
+
+```{r}
+library(tidyverse)
+nc_flat %>%
+  ggplot() +
+  aes(fips = FIPS) +
+  geom_sf_countync() ->
+flat_file_friendly_approach
+
+flat_file_friendly_approach
+
+last_plot() + 
+  aes(fill = SID74) +
+  scale_fill_viridis_c()
+
+last_plot() + 
+  geom_sf_countync(county = "Ashe", color = "red", lwd = .5)
+
+
+last_plot() + 
+  geom_sf_countync(county = c("Alleghany", "Warren"), 
+                   color = "plum", lwd = .5)
+                   
+```
+
+
+```{r}
+nc_flat %>% 
+  select(FIPS, BIR74:NWBIR79) %>% 
+  pivot_longer(-FIPS) %>% 
+  group_by(name) %>%
+  mutate(value_sds = (value - mean(value, na.rm = T))/sd(value, na.rm = T)) %>%
+  mutate(rank = rank(value)) %>%
+  ggplot() + 
+  aes(fips = FIPS) +
+  aes(fill = rank) + 
+  geom_sf_countync() +
+  facet_wrap(~name)
+```
+
+## Not there yet
+
+
+```{r}
+identical(flat_file_friendly_approach, classic_approach)
+library(patchwork)
+flat_file_friendly_approach + classic_approach
+
+
+
+```
+
+> Graticules
+Graticules are grid lines along equal longitude (meridians) or latitude (parallels) that, depending on the projection used, often plot as curved lines on a map, giving it reference in terms of longitude and latitude. The sf function st_graticule tries to create a graticule grid for arbitrary maps. As there are infinitely many projections, there are most likely many cases where it does not succeed in doing this well, and examples of these are welcomed as sf issues.
+
+>contains a geom specially for simple feature objects, with support for graticule white lines in the background using sf::st_graticule. Support is currently good for polygons; for lines or points, your mileage may vary.
+
+```{r}
+layer_data(classic_approach) %>% head()
+layer_data(flat_file_friendly_approach) %>% head()
+
+layer_scales(classic_approach) %>% head()
+layer_scales(flat_file_friendly_approach) %>% head()
+
+layer_grob(classic_approach)[[1]]
+layer_grob(flat_file_friendly_approach)[[1]]
+```
+
+## might be nice to keep all of the reference geometries
+
+Haven't been able to do that, throwing error. The result with partial data to be displayed.
+
+```{r}
+nc_flat %>% 
+  slice_sample(n = 50, replace = F) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+
+nc %>% 
+  mutate(SID74 = ifelse(SID74>15, NA, SID74)) %>% 
+  ggplot() + 
+  geom_sf() +
+  aes(fill = SID74)
+
+
+nc_flat %>% 
+  filter(SID74 <= 15) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+
+nc_flat %>% 
+  mutate(SID74 = ifelse(SID74 > 15, NA, SID74)) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+```
+
+# this right join attempt throws an error. Not sure how to address
+
+```{r, error=T}
+compute_county_nc <- function(data, scales, county = NULL){
+
+  reference_filtered <- reference_full
+  #
+  if(!is.null(county)){
+
+    county %>% tolower() -> county
+
+    reference_filtered %>%
+      dplyr::filter(.data$county_name %>%
+                      tolower() %in%
+                      county) ->
+      reference_filtered
+
+  }
+
+  # to prevent overjoining
+  reference_filtered %>%
+    dplyr::select("fips", "geometry", "xmin",
+                  "xmax", "ymin", "ymax") ->
+    reference_filtered
+
+
+  data %>%
+    dplyr::right_join(reference_filtered, by = join_by(fips)) %>%
+    dplyr::mutate(group = -1) %>%
+    dplyr::select(-fips)
+
+}
+
+
+StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
+                               `_inherit` = ggplot2::Stat,
+                               compute_panel = compute_county_nc,
+                               default_aes = ggplot2::aes(geometry =
+                                                            ggplot2::after_stat(geometry)))
+
+geom_sf_countync <- function(
+                                 mapping = NULL,
+                                 data = NULL,
+                                 position = "identity",
+                                 na.rm = FALSE,
+                                 show.legend = NA,
+                                 inherit.aes = TRUE, ...
+                                 ) {
+
+                                 c(ggplot2::layer_sf(
+                                   stat = StatCountync,  # proto object from step 2
+                                   geom = ggplot2::GeomSf,  # inherit other behavior
+                                   data = data,
+                                   mapping = mapping,
+                                   position = position,
+                                   show.legend = show.legend,
+                                   inherit.aes = inherit.aes,
+                                   params = rlang::list2(na.rm = na.rm, ...)),
+                                   coord_sf(default = TRUE)
+                                 )
+
+                 }
+
+nc_flat %>% 
+  filter(SID74 <= 15) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+
+
+```
+
+
+```
+Backtrace:
+ 1. base (local) `<fn>`(x)
+ 2. ggplot2:::print.ggplot(x)
+ 4. ggplot2:::ggplot_build.ggplot(x)
+ 5. layout$train_position(data, scale_x(), scale_y())
+ 6. ggplot2 (local) train_position(..., self = self)
+ 7. self$facet$train_scales(...)
+ 8. ggplot2 (local) train_scales(...)
+ 9. ggplot2:::scale_apply(layer_data, x_vars, "train", SCALE_X, x_scales)
+ ```
