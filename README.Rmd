@@ -88,6 +88,13 @@ nc_flat %>%
   aes(fill = rank) + 
   geom_sf_countync() +
   facet_wrap(~name)
+
+nc_flat %>% 
+  ggplot() + 
+  aes(fips = FIPS) + 
+  geom_sf_countync() +
+  ggnc:::geom_sf_nc_alamance(fill = "darkred") + 
+  ggnc:::geom_sf_nc_beaufort(fill = "green")
 ```
 
 ## Not there yet

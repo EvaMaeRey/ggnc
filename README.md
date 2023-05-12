@@ -109,6 +109,18 @@ nc_flat %>%
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
+``` r
+
+nc_flat %>% 
+  ggplot() + 
+  aes(fips = FIPS) + 
+  geom_sf_countync() +
+  ggnc:::geom_sf_nc_alamance(fill = "darkred") + 
+  ggnc:::geom_sf_nc_beaufort(fill = "green")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+
 ## Not there yet
 
 ``` r
@@ -188,9 +200,9 @@ layer_scales(flat_file_friendly_approach) %>% head()
 #>  Limits: 33.9 -- 36.6
 
 layer_grob(classic_approach)[[1]]
-#> pathgrob[GRID.pathgrob.592]
+#> pathgrob[GRID.pathgrob.627]
 layer_grob(flat_file_friendly_approach)[[1]]
-#> pathgrob[GRID.pathgrob.593]
+#> pathgrob[GRID.pathgrob.628]
 ```
 
 ## might be nice to keep all of the reference geometries
