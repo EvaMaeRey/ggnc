@@ -1,99 +1,99 @@
-geom_sf_nc_ashe <- function(...){ geom_sf_countync(county = "ashe", ...)}
-geom_sf_nc_alleghany <- function(...){ geom_sf_countync(county = "alleghany", ...)}
-geom_sf_nc_surry <- function(...){ geom_sf_countync(county = "surry", ...)}
-geom_sf_nc_currituck <- function(...){ geom_sf_countync(county = "currituck", ...)}
-geom_sf_nc_northampton <- function(...){ geom_sf_countync(county = "northampton", ...)}
-geom_sf_nc_hertford <- function(...){ geom_sf_countync(county = "hertford", ...)}
-geom_sf_nc_camden <- function(...){ geom_sf_countync(county = "camden", ...)}
-geom_sf_nc_gates <- function(...){ geom_sf_countync(county = "gates", ...)}
-geom_sf_nc_warren <- function(...){ geom_sf_countync(county = "warren", ...)}
-geom_sf_nc_stokes <- function(...){ geom_sf_countync(county = "stokes", ...)}
-geom_sf_nc_caswell <- function(...){ geom_sf_countync(county = "caswell", ...)}
-geom_sf_nc_rockingham <- function(...){ geom_sf_countync(county = "rockingham", ...)}
-geom_sf_nc_granville <- function(...){ geom_sf_countync(county = "granville", ...)}
-geom_sf_nc_person <- function(...){ geom_sf_countync(county = "person", ...)}
-geom_sf_nc_vance <- function(...){ geom_sf_countync(county = "vance", ...)}
-geom_sf_nc_halifax <- function(...){ geom_sf_countync(county = "halifax", ...)}
-geom_sf_nc_pasquotank <- function(...){ geom_sf_countync(county = "pasquotank", ...)}
-geom_sf_nc_wilkes <- function(...){ geom_sf_countync(county = "wilkes", ...)}
-geom_sf_nc_watauga <- function(...){ geom_sf_countync(county = "watauga", ...)}
-geom_sf_nc_perquimans <- function(...){ geom_sf_countync(county = "perquimans", ...)}
-geom_sf_nc_chowan <- function(...){ geom_sf_countync(county = "chowan", ...)}
-geom_sf_nc_avery <- function(...){ geom_sf_countync(county = "avery", ...)}
-geom_sf_nc_yadkin <- function(...){ geom_sf_countync(county = "yadkin", ...)}
-geom_sf_nc_franklin <- function(...){ geom_sf_countync(county = "franklin", ...)}
-geom_sf_nc_forsyth <- function(...){ geom_sf_countync(county = "forsyth", ...)}
-geom_sf_nc_guilford <- function(...){ geom_sf_countync(county = "guilford", ...)}
-geom_sf_nc_alamance <- function(...){ geom_sf_countync(county = "alamance", ...)}
-geom_sf_nc_bertie <- function(...){ geom_sf_countync(county = "bertie", ...)}
-geom_sf_nc_orange <- function(...){ geom_sf_countync(county = "orange", ...)}
-geom_sf_nc_durham <- function(...){ geom_sf_countync(county = "durham", ...)}
-geom_sf_nc_nash <- function(...){ geom_sf_countync(county = "nash", ...)}
-geom_sf_nc_mitchell <- function(...){ geom_sf_countync(county = "mitchell", ...)}
-geom_sf_nc_edgecombe <- function(...){ geom_sf_countync(county = "edgecombe", ...)}
-geom_sf_nc_caldwell <- function(...){ geom_sf_countync(county = "caldwell", ...)}
-geom_sf_nc_yancey <- function(...){ geom_sf_countync(county = "yancey", ...)}
-geom_sf_nc_martin <- function(...){ geom_sf_countync(county = "martin", ...)}
-geom_sf_nc_wake <- function(...){ geom_sf_countync(county = "wake", ...)}
-geom_sf_nc_madison <- function(...){ geom_sf_countync(county = "madison", ...)}
-geom_sf_nc_iredell <- function(...){ geom_sf_countync(county = "iredell", ...)}
-geom_sf_nc_davie <- function(...){ geom_sf_countync(county = "davie", ...)}
-geom_sf_nc_alexander <- function(...){ geom_sf_countync(county = "alexander", ...)}
-geom_sf_nc_davidson <- function(...){ geom_sf_countync(county = "davidson", ...)}
-geom_sf_nc_burke <- function(...){ geom_sf_countync(county = "burke", ...)}
-geom_sf_nc_washington <- function(...){ geom_sf_countync(county = "washington", ...)}
-geom_sf_nc_tyrrell <- function(...){ geom_sf_countync(county = "tyrrell", ...)}
-geom_sf_nc_mcdowell <- function(...){ geom_sf_countync(county = "mcdowell", ...)}
-geom_sf_nc_randolph <- function(...){ geom_sf_countync(county = "randolph", ...)}
-geom_sf_nc_chatham <- function(...){ geom_sf_countync(county = "chatham", ...)}
-geom_sf_nc_wilson <- function(...){ geom_sf_countync(county = "wilson", ...)}
-geom_sf_nc_rowan <- function(...){ geom_sf_countync(county = "rowan", ...)}
-geom_sf_nc_pitt <- function(...){ geom_sf_countync(county = "pitt", ...)}
-geom_sf_nc_catawba <- function(...){ geom_sf_countync(county = "catawba", ...)}
-geom_sf_nc_buncombe <- function(...){ geom_sf_countync(county = "buncombe", ...)}
-geom_sf_nc_johnston <- function(...){ geom_sf_countync(county = "johnston", ...)}
-geom_sf_nc_haywood <- function(...){ geom_sf_countync(county = "haywood", ...)}
-geom_sf_nc_dare <- function(...){ geom_sf_countync(county = "dare", ...)}
-geom_sf_nc_beaufort <- function(...){ geom_sf_countync(county = "beaufort", ...)}
-geom_sf_nc_swain <- function(...){ geom_sf_countync(county = "swain", ...)}
-geom_sf_nc_greene <- function(...){ geom_sf_countync(county = "greene", ...)}
-geom_sf_nc_lee <- function(...){ geom_sf_countync(county = "lee", ...)}
-geom_sf_nc_rutherford <- function(...){ geom_sf_countync(county = "rutherford", ...)}
-geom_sf_nc_wayne <- function(...){ geom_sf_countync(county = "wayne", ...)}
-geom_sf_nc_harnett <- function(...){ geom_sf_countync(county = "harnett", ...)}
-geom_sf_nc_cleveland <- function(...){ geom_sf_countync(county = "cleveland", ...)}
-geom_sf_nc_lincoln <- function(...){ geom_sf_countync(county = "lincoln", ...)}
-geom_sf_nc_jackson <- function(...){ geom_sf_countync(county = "jackson", ...)}
-geom_sf_nc_moore <- function(...){ geom_sf_countync(county = "moore", ...)}
-geom_sf_nc_mecklenburg <- function(...){ geom_sf_countync(county = "mecklenburg", ...)}
-geom_sf_nc_cabarrus <- function(...){ geom_sf_countync(county = "cabarrus", ...)}
-geom_sf_nc_montgomery <- function(...){ geom_sf_countync(county = "montgomery", ...)}
-geom_sf_nc_stanly <- function(...){ geom_sf_countync(county = "stanly", ...)}
-geom_sf_nc_henderson <- function(...){ geom_sf_countync(county = "henderson", ...)}
-geom_sf_nc_graham <- function(...){ geom_sf_countync(county = "graham", ...)}
-geom_sf_nc_lenoir <- function(...){ geom_sf_countync(county = "lenoir", ...)}
-geom_sf_nc_transylvania <- function(...){ geom_sf_countync(county = "transylvania", ...)}
-geom_sf_nc_gaston <- function(...){ geom_sf_countync(county = "gaston", ...)}
-geom_sf_nc_polk <- function(...){ geom_sf_countync(county = "polk", ...)}
-geom_sf_nc_macon <- function(...){ geom_sf_countync(county = "macon", ...)}
-geom_sf_nc_sampson <- function(...){ geom_sf_countync(county = "sampson", ...)}
-geom_sf_nc_pamlico <- function(...){ geom_sf_countync(county = "pamlico", ...)}
-geom_sf_nc_cherokee <- function(...){ geom_sf_countync(county = "cherokee", ...)}
-geom_sf_nc_cumberland <- function(...){ geom_sf_countync(county = "cumberland", ...)}
-geom_sf_nc_jones <- function(...){ geom_sf_countync(county = "jones", ...)}
-geom_sf_nc_union <- function(...){ geom_sf_countync(county = "union", ...)}
-geom_sf_nc_anson <- function(...){ geom_sf_countync(county = "anson", ...)}
-geom_sf_nc_hoke <- function(...){ geom_sf_countync(county = "hoke", ...)}
-geom_sf_nc_hyde <- function(...){ geom_sf_countync(county = "hyde", ...)}
-geom_sf_nc_duplin <- function(...){ geom_sf_countync(county = "duplin", ...)}
-geom_sf_nc_richmond <- function(...){ geom_sf_countync(county = "richmond", ...)}
-geom_sf_nc_clay <- function(...){ geom_sf_countync(county = "clay", ...)}
-geom_sf_nc_craven <- function(...){ geom_sf_countync(county = "craven", ...)}
-geom_sf_nc_scotland <- function(...){ geom_sf_countync(county = "scotland", ...)}
-geom_sf_nc_onslow <- function(...){ geom_sf_countync(county = "onslow", ...)}
-geom_sf_nc_robeson <- function(...){ geom_sf_countync(county = "robeson", ...)}
-geom_sf_nc_carteret <- function(...){ geom_sf_countync(county = "carteret", ...)}
-geom_sf_nc_bladen <- function(...){ geom_sf_countync(county = "bladen", ...)}
-geom_sf_nc_pender <- function(...){ geom_sf_countync(county = "pender", ...)}
-geom_sf_nc_columbus <- function(...){ geom_sf_countync(county = "columbus", ...)}
-geom_sf_nc_brunswick <- function(...){ geom_sf_countync(county = "brunswick", ...)}
+stamp_sf_nc_ashe <- function(fill = "red", ...){ stamp_sf_countync(county = "ashe", fill = fill, ...)}
+stamp_sf_nc_alleghany <- function(fill = "red", ...){ stamp_sf_countync(county = "alleghany", fill = fill, ...)}
+stamp_sf_nc_surry <- function(fill = "red", ...){ stamp_sf_countync(county = "surry", fill = fill, ...)}
+stamp_sf_nc_currituck <- function(fill = "red", ...){ stamp_sf_countync(county = "currituck", fill = fill, ...)}
+stamp_sf_nc_northampton <- function(fill = "red", ...){ stamp_sf_countync(county = "northampton", fill = fill, ...)}
+stamp_sf_nc_hertford <- function(fill = "red", ...){ stamp_sf_countync(county = "hertford", fill = fill, ...)}
+stamp_sf_nc_camden <- function(fill = "red", ...){ stamp_sf_countync(county = "camden", fill = fill, ...)}
+stamp_sf_nc_gates <- function(fill = "red", ...){ stamp_sf_countync(county = "gates", fill = fill, ...)}
+stamp_sf_nc_warren <- function(fill = "red", ...){ stamp_sf_countync(county = "warren", fill = fill, ...)}
+stamp_sf_nc_stokes <- function(fill = "red", ...){ stamp_sf_countync(county = "stokes", fill = fill, ...)}
+stamp_sf_nc_caswell <- function(fill = "red", ...){ stamp_sf_countync(county = "caswell", fill = fill, ...)}
+stamp_sf_nc_rockingham <- function(fill = "red", ...){ stamp_sf_countync(county = "rockingham", fill = fill, ...)}
+stamp_sf_nc_granville <- function(fill = "red", ...){ stamp_sf_countync(county = "granville", fill = fill, ...)}
+stamp_sf_nc_person <- function(fill = "red", ...){ stamp_sf_countync(county = "person", fill = fill, ...)}
+stamp_sf_nc_vance <- function(fill = "red", ...){ stamp_sf_countync(county = "vance", fill = fill, ...)}
+stamp_sf_nc_halifax <- function(fill = "red", ...){ stamp_sf_countync(county = "halifax", fill = fill, ...)}
+stamp_sf_nc_pasquotank <- function(fill = "red", ...){ stamp_sf_countync(county = "pasquotank", fill = fill, ...)}
+stamp_sf_nc_wilkes <- function(fill = "red", ...){ stamp_sf_countync(county = "wilkes", fill = fill, ...)}
+stamp_sf_nc_watauga <- function(fill = "red", ...){ stamp_sf_countync(county = "watauga", fill = fill, ...)}
+stamp_sf_nc_perquimans <- function(fill = "red", ...){ stamp_sf_countync(county = "perquimans", fill = fill, ...)}
+stamp_sf_nc_chowan <- function(fill = "red", ...){ stamp_sf_countync(county = "chowan", fill = fill, ...)}
+stamp_sf_nc_avery <- function(fill = "red", ...){ stamp_sf_countync(county = "avery", fill = fill, ...)}
+stamp_sf_nc_yadkin <- function(fill = "red", ...){ stamp_sf_countync(county = "yadkin", fill = fill, ...)}
+stamp_sf_nc_franklin <- function(fill = "red", ...){ stamp_sf_countync(county = "franklin", fill = fill, ...)}
+stamp_sf_nc_forsyth <- function(fill = "red", ...){ stamp_sf_countync(county = "forsyth", fill = fill, ...)}
+stamp_sf_nc_guilford <- function(fill = "red", ...){ stamp_sf_countync(county = "guilford", fill = fill, ...)}
+stamp_sf_nc_alamance <- function(fill = "red", ...){ stamp_sf_countync(county = "alamance", fill = fill, ...)}
+stamp_sf_nc_bertie <- function(fill = "red", ...){ stamp_sf_countync(county = "bertie", fill = fill, ...)}
+stamp_sf_nc_orange <- function(fill = "red", ...){ stamp_sf_countync(county = "orange", fill = fill, ...)}
+stamp_sf_nc_durham <- function(fill = "red", ...){ stamp_sf_countync(county = "durham", fill = fill, ...)}
+stamp_sf_nc_nash <- function(fill = "red", ...){ stamp_sf_countync(county = "nash", fill = fill, ...)}
+stamp_sf_nc_mitchell <- function(fill = "red", ...){ stamp_sf_countync(county = "mitchell", fill = fill, ...)}
+stamp_sf_nc_edgecombe <- function(fill = "red", ...){ stamp_sf_countync(county = "edgecombe", fill = fill, ...)}
+stamp_sf_nc_caldwell <- function(fill = "red", ...){ stamp_sf_countync(county = "caldwell", fill = fill, ...)}
+stamp_sf_nc_yancey <- function(fill = "red", ...){ stamp_sf_countync(county = "yancey", fill = fill, ...)}
+stamp_sf_nc_martin <- function(fill = "red", ...){ stamp_sf_countync(county = "martin", fill = fill, ...)}
+stamp_sf_nc_wake <- function(fill = "red", ...){ stamp_sf_countync(county = "wake", fill = fill, ...)}
+stamp_sf_nc_madison <- function(fill = "red", ...){ stamp_sf_countync(county = "madison", fill = fill, ...)}
+stamp_sf_nc_iredell <- function(fill = "red", ...){ stamp_sf_countync(county = "iredell", fill = fill, ...)}
+stamp_sf_nc_davie <- function(fill = "red", ...){ stamp_sf_countync(county = "davie", fill = fill, ...)}
+stamp_sf_nc_alexander <- function(fill = "red", ...){ stamp_sf_countync(county = "alexander", fill = fill, ...)}
+stamp_sf_nc_davidson <- function(fill = "red", ...){ stamp_sf_countync(county = "davidson", fill = fill, ...)}
+stamp_sf_nc_burke <- function(fill = "red", ...){ stamp_sf_countync(county = "burke", fill = fill, ...)}
+stamp_sf_nc_washington <- function(fill = "red", ...){ stamp_sf_countync(county = "washington", fill = fill, ...)}
+stamp_sf_nc_tyrrell <- function(fill = "red", ...){ stamp_sf_countync(county = "tyrrell", fill = fill, ...)}
+stamp_sf_nc_mcdowell <- function(fill = "red", ...){ stamp_sf_countync(county = "mcdowell", fill = fill, ...)}
+stamp_sf_nc_randolph <- function(fill = "red", ...){ stamp_sf_countync(county = "randolph", fill = fill, ...)}
+stamp_sf_nc_chatham <- function(fill = "red", ...){ stamp_sf_countync(county = "chatham", fill = fill, ...)}
+stamp_sf_nc_wilson <- function(fill = "red", ...){ stamp_sf_countync(county = "wilson", fill = fill, ...)}
+stamp_sf_nc_rowan <- function(fill = "red", ...){ stamp_sf_countync(county = "rowan", fill = fill, ...)}
+stamp_sf_nc_pitt <- function(fill = "red", ...){ stamp_sf_countync(county = "pitt", fill = fill, ...)}
+stamp_sf_nc_catawba <- function(fill = "red", ...){ stamp_sf_countync(county = "catawba", fill = fill, ...)}
+stamp_sf_nc_buncombe <- function(fill = "red", ...){ stamp_sf_countync(county = "buncombe", fill = fill, ...)}
+stamp_sf_nc_johnston <- function(fill = "red", ...){ stamp_sf_countync(county = "johnston", fill = fill, ...)}
+stamp_sf_nc_haywood <- function(fill = "red", ...){ stamp_sf_countync(county = "haywood", fill = fill, ...)}
+stamp_sf_nc_dare <- function(fill = "red", ...){ stamp_sf_countync(county = "dare", fill = fill, ...)}
+stamp_sf_nc_beaufort <- function(fill = "red", ...){ stamp_sf_countync(county = "beaufort", fill = fill, ...)}
+stamp_sf_nc_swain <- function(fill = "red", ...){ stamp_sf_countync(county = "swain", fill = fill, ...)}
+stamp_sf_nc_greene <- function(fill = "red", ...){ stamp_sf_countync(county = "greene", fill = fill, ...)}
+stamp_sf_nc_lee <- function(fill = "red", ...){ stamp_sf_countync(county = "lee", fill = fill, ...)}
+stamp_sf_nc_rutherford <- function(fill = "red", ...){ stamp_sf_countync(county = "rutherford", fill = fill, ...)}
+stamp_sf_nc_wayne <- function(fill = "red", ...){ stamp_sf_countync(county = "wayne", fill = fill, ...)}
+stamp_sf_nc_harnett <- function(fill = "red", ...){ stamp_sf_countync(county = "harnett", fill = fill, ...)}
+stamp_sf_nc_cleveland <- function(fill = "red", ...){ stamp_sf_countync(county = "cleveland", fill = fill, ...)}
+stamp_sf_nc_lincoln <- function(fill = "red", ...){ stamp_sf_countync(county = "lincoln", fill = fill, ...)}
+stamp_sf_nc_jackson <- function(fill = "red", ...){ stamp_sf_countync(county = "jackson", fill = fill, ...)}
+stamp_sf_nc_moore <- function(fill = "red", ...){ stamp_sf_countync(county = "moore", fill = fill, ...)}
+stamp_sf_nc_mecklenburg <- function(fill = "red", ...){ stamp_sf_countync(county = "mecklenburg", fill = fill, ...)}
+stamp_sf_nc_cabarrus <- function(fill = "red", ...){ stamp_sf_countync(county = "cabarrus", fill = fill, ...)}
+stamp_sf_nc_montgomery <- function(fill = "red", ...){ stamp_sf_countync(county = "montgomery", fill = fill, ...)}
+stamp_sf_nc_stanly <- function(fill = "red", ...){ stamp_sf_countync(county = "stanly", fill = fill, ...)}
+stamp_sf_nc_henderson <- function(fill = "red", ...){ stamp_sf_countync(county = "henderson", fill = fill, ...)}
+stamp_sf_nc_graham <- function(fill = "red", ...){ stamp_sf_countync(county = "graham", fill = fill, ...)}
+stamp_sf_nc_lenoir <- function(fill = "red", ...){ stamp_sf_countync(county = "lenoir", fill = fill, ...)}
+stamp_sf_nc_transylvania <- function(fill = "red", ...){ stamp_sf_countync(county = "transylvania", fill = fill, ...)}
+stamp_sf_nc_gaston <- function(fill = "red", ...){ stamp_sf_countync(county = "gaston", fill = fill, ...)}
+stamp_sf_nc_polk <- function(fill = "red", ...){ stamp_sf_countync(county = "polk", fill = fill, ...)}
+stamp_sf_nc_macon <- function(fill = "red", ...){ stamp_sf_countync(county = "macon", fill = fill, ...)}
+stamp_sf_nc_sampson <- function(fill = "red", ...){ stamp_sf_countync(county = "sampson", fill = fill, ...)}
+stamp_sf_nc_pamlico <- function(fill = "red", ...){ stamp_sf_countync(county = "pamlico", fill = fill, ...)}
+stamp_sf_nc_cherokee <- function(fill = "red", ...){ stamp_sf_countync(county = "cherokee", fill = fill, ...)}
+stamp_sf_nc_cumberland <- function(fill = "red", ...){ stamp_sf_countync(county = "cumberland", fill = fill, ...)}
+stamp_sf_nc_jones <- function(fill = "red", ...){ stamp_sf_countync(county = "jones", fill = fill, ...)}
+stamp_sf_nc_union <- function(fill = "red", ...){ stamp_sf_countync(county = "union", fill = fill, ...)}
+stamp_sf_nc_anson <- function(fill = "red", ...){ stamp_sf_countync(county = "anson", fill = fill, ...)}
+stamp_sf_nc_hoke <- function(fill = "red", ...){ stamp_sf_countync(county = "hoke", fill = fill, ...)}
+stamp_sf_nc_hyde <- function(fill = "red", ...){ stamp_sf_countync(county = "hyde", fill = fill, ...)}
+stamp_sf_nc_duplin <- function(fill = "red", ...){ stamp_sf_countync(county = "duplin", fill = fill, ...)}
+stamp_sf_nc_richmond <- function(fill = "red", ...){ stamp_sf_countync(county = "richmond", fill = fill, ...)}
+stamp_sf_nc_clay <- function(fill = "red", ...){ stamp_sf_countync(county = "clay", fill = fill, ...)}
+stamp_sf_nc_craven <- function(fill = "red", ...){ stamp_sf_countync(county = "craven", fill = fill, ...)}
+stamp_sf_nc_scotland <- function(fill = "red", ...){ stamp_sf_countync(county = "scotland", fill = fill, ...)}
+stamp_sf_nc_onslow <- function(fill = "red", ...){ stamp_sf_countync(county = "onslow", fill = fill, ...)}
+stamp_sf_nc_robeson <- function(fill = "red", ...){ stamp_sf_countync(county = "robeson", fill = fill, ...)}
+stamp_sf_nc_carteret <- function(fill = "red", ...){ stamp_sf_countync(county = "carteret", fill = fill, ...)}
+stamp_sf_nc_bladen <- function(fill = "red", ...){ stamp_sf_countync(county = "bladen", fill = fill, ...)}
+stamp_sf_nc_pender <- function(fill = "red", ...){ stamp_sf_countync(county = "pender", fill = fill, ...)}
+stamp_sf_nc_columbus <- function(fill = "red", ...){ stamp_sf_countync(county = "columbus", fill = fill, ...)}
+stamp_sf_nc_brunswick <- function(fill = "red", ...){ stamp_sf_countync(county = "brunswick", fill = fill, ...)}

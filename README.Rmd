@@ -93,8 +93,8 @@ nc_flat %>%
   ggplot() + 
   aes(fips = FIPS) + 
   geom_sf_countync() +
-  ggnc:::geom_sf_nc_alamance(fill = "darkred") + 
-  ggnc:::geom_sf_nc_beaufort(fill = "green")
+  ggnc:::stamp_sf_nc_alamance(fill = "darkred") + 
+  ggnc:::stamp_sf_nc_beaufort(fill = "green")
 ```
 
 ## Not there yet
@@ -150,6 +150,15 @@ nc_flat %>%
   aes(fips =FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
+
+nc_flat %>% 
+  filter(SID74 <= 15) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  stamp_sf_countync(fill = "darkgrey") +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+
 
 nc_flat %>% 
   mutate(SID74 = ifelse(SID74 > 15, NA, SID74)) %>% 

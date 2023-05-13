@@ -115,8 +115,8 @@ nc_flat %>%
   ggplot() + 
   aes(fips = FIPS) + 
   geom_sf_countync() +
-  ggnc:::geom_sf_nc_alamance(fill = "darkred") + 
-  ggnc:::geom_sf_nc_beaufort(fill = "green")
+  ggnc:::stamp_sf_nc_alamance(fill = "darkred") + 
+  ggnc:::stamp_sf_nc_beaufort(fill = "green")
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
@@ -248,6 +248,20 @@ nc_flat %>%
 ``` r
 
 nc_flat %>% 
+  filter(SID74 <= 15) %>% 
+  ggplot() + 
+  aes(fips =FIPS) +
+  stamp_sf_countync(fill = "darkgrey") +
+  geom_sf_countync() + 
+  aes(fill = SID74)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-4.png" width="100%" />
+
+``` r
+
+
+nc_flat %>% 
   mutate(SID74 = ifelse(SID74 > 15, NA, SID74)) %>% 
   ggplot() + 
   aes(fips =FIPS) +
@@ -255,7 +269,7 @@ nc_flat %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-5.png" width="100%" />
 
 # this right join attempt throws an error. Not sure how to address
 
