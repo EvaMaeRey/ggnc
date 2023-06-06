@@ -4,7 +4,7 @@
 \alias{add_row_bounding_box}
 \title{Title}
 \usage{
-add_row_bounding_box(data)
+add_row_bounding_box(data = nc)
 }
 \arguments{
 \item{data}{}

@@ -24,14 +24,14 @@ bbox_to_df <- function(bbox = sf::st_bbox(nc)){
 #' nc <- st_read(system.file("shape/nc.shp", package="sf"))
 
 #' add_row_bounding_box(nc)
-add_row_bounding_box <- function(data){
+add_row_bounding_box <- function(data = nc){
 
-  for (i in 1:nrow(nc)){
+  for (i in 1:nrow(data)){
 
-    if(i == 1){df <- nc[i,] %>% st_bbox() %>% bbox_to_df() }else{
+    if(i == 1){df <- data[i,] %>% st_bbox() %>% bbox_to_df() }else{
 
       dplyr::bind_rows(df,
-                nc[i,] %>% st_bbox() %>% bbox_to_df()) ->
+                       data[i,] %>% st_bbox() %>% bbox_to_df()) ->
         df
     }
 

@@ -7,7 +7,15 @@
 
 <!-- badges: end -->
 
-The goal of ggnc is to …
+The goal of ggnc is to allow you to easily create maps of North Carolina
+Counties from flat data. Flat files will contain ids and characteristics
+of a county, but not the longitude and latitudes that define the
+parimeters of the counties.
+
+North Carolina is the worked example in the sf package, for this reason,
+ggnc as an extension package deserves special attention and polishing as
+a possible reference point for other projects like ggfips, ggbrazil,
+ggswitzerland, ggunitedstates, etc.
 
 ## Installation
 
@@ -19,7 +27,7 @@ You can install the development version of ggnc from
 devtools::install_github("EvaMaeRey/ggnc")
 ```
 
-## Example
+## Contrasting the base ggplot2 approach and the ggnc approach…
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -39,10 +47,18 @@ library(ggnc)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The base ggplot2 approach is to use an sf object as a data input. This
+sf object contains a special geometry column with information on the
+geographic shape information.
 
 ``` r
+class(nc)
+#> [1] "sf"         "data.frame"
+names(nc)
+#>  [1] "AREA"      "PERIMETER" "CNTY_"     "CNTY_ID"   "NAME"      "FIPS"     
+#>  [7] "FIPSNO"    "CRESS_ID"  "BIR74"     "SID74"     "NWBIR74"   "BIR79"    
+#> [13] "SID79"     "NWBIR79"   "geometry"
+
 nc %>% 
   ggplot() + 
   geom_sf() ->
@@ -52,6 +68,11 @@ classic_approach
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+However, sometimes analysts will only have flat files as an initial
+starting point. They won’t have this special geometry column at their
+disposal. ggnc anticipates this starting point – and nevertheless makes
+it easy to create a map.
 
 ``` r
 library(tidyverse)
