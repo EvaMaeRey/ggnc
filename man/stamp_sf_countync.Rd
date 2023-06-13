@@ -11,6 +11,7 @@ stamp_sf_countync(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
+  crs = "NAD27",
   ...
 )
 }

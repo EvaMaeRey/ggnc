@@ -142,30 +142,24 @@ nc_flat %>%
 
 <img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
 
-## Not there yet
+## mostly there\!
 
 ``` r
 identical(flat_file_friendly_approach, classic_approach)
 #> [1] FALSE
 library(patchwork)
+
 flat_file_friendly_approach + classic_approach
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-> Graticules Graticules are grid lines along equal longitude (meridians)
-> or latitude (parallels) that, depending on the projection used, often
-> plot as curved lines on a map, giving it reference in terms of
-> longitude and latitude. The sf function st\_graticule tries to create
-> a graticule grid for arbitrary maps. As there are infinitely many
-> projections, there are most likely many cases where it does not
-> succeed in doing this well, and examples of these are welcomed as sf
-> issues.
+``` r
 
-> contains a geom specially for simple feature objects, with support for
-> graticule white lines in the background using sf::st\_graticule.
-> Support is currently good for polygons; for lines or points, your
-> mileage may vary.
+flat_file_friendly_approach / classic_approach
+```
+
+<img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
 
 ``` r
 layer_data(classic_approach) %>% head()
@@ -221,12 +215,26 @@ layer_scales(flat_file_friendly_approach) %>% head()
 #>  Limits: 33.9 -- 36.6
 
 layer_grob(classic_approach)[[1]]
-#> pathgrob[GRID.pathgrob.627]
+#> pathgrob[GRID.pathgrob.708]
 layer_grob(flat_file_friendly_approach)[[1]]
-#> pathgrob[GRID.pathgrob.628]
+#> pathgrob[GRID.pathgrob.709]
 ```
 
-## might be nice to keep all of the reference geometries
+## greedy aes behavior in all sf layers makes for clunkier interface
+
+I need to look for a better example/refine the issue.
+
+``` r
+nc_flat %>% 
+  ggplot() +
+  aes(x = AREA, y = PERIMETER) +
+  geom_point(aes(fips = NULL)) + 
+  aes(fips = fips)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+## might be nice to keep *all* of the reference geometries
 
 Haven’t been able to do that, throwing error. The result with partial
 data to be displayed.
@@ -240,7 +248,7 @@ nc_flat %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ``` r
 
@@ -251,10 +259,9 @@ nc %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
 
 ``` r
-
 
 nc_flat %>% 
   filter(SID74 <= 15) %>% 
@@ -264,7 +271,7 @@ nc_flat %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />
 
 ``` r
 
@@ -277,22 +284,21 @@ nc_flat %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-4.png" width="100%" />
 
 ``` r
-
 
 nc_flat %>% 
   mutate(SID74 = ifelse(SID74 > 15, NA, SID74)) %>% 
   ggplot() + 
-  aes(fips =FIPS) +
+  aes(fips = FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-5.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-5.png" width="100%" />
 
-# this right join attempt throws an error. Not sure how to address
+# this right join attempt throws an error. Not sure why how to address. But also thinking maybe inner join is the right default at least.
 
 ``` r
 compute_county_nc <- function(data, scales, county = NULL){

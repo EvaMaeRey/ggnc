@@ -107,22 +107,21 @@ nc_flat %>%
   ggnc:::stamp_sf_nc_beaufort(fill = "green")
 ```
 
-## Not there yet
+## mostly there!
 
 
 ```{r}
 identical(flat_file_friendly_approach, classic_approach)
 library(patchwork)
+
 flat_file_friendly_approach + classic_approach
 
+flat_file_friendly_approach / classic_approach
 
 
 ```
 
-> Graticules
-Graticules are grid lines along equal longitude (meridians) or latitude (parallels) that, depending on the projection used, often plot as curved lines on a map, giving it reference in terms of longitude and latitude. The sf function st_graticule tries to create a graticule grid for arbitrary maps. As there are infinitely many projections, there are most likely many cases where it does not succeed in doing this well, and examples of these are welcomed as sf issues.
 
->contains a geom specially for simple feature objects, with support for graticule white lines in the background using sf::st_graticule. Support is currently good for polygons; for lines or points, your mileage may vary.
 
 ```{r}
 layer_data(classic_approach) %>% head()
@@ -135,7 +134,20 @@ layer_grob(classic_approach)[[1]]
 layer_grob(flat_file_friendly_approach)[[1]]
 ```
 
-## might be nice to keep all of the reference geometries
+## greedy aes behavior in all sf layers makes for clunkier interface
+
+I need to look for a better example/refine the issue.
+
+```{r}
+nc_flat %>% 
+  ggplot() +
+  aes(x = AREA, y = PERIMETER) +
+  geom_point(aes(fips = NULL)) + 
+  aes(fips = fips)
+```
+
+
+## might be nice to keep *all* of the reference geometries
 
 Haven't been able to do that, throwing error. The result with partial data to be displayed.
 
@@ -153,7 +165,6 @@ nc %>%
   geom_sf() +
   aes(fill = SID74)
 
-
 nc_flat %>% 
   filter(SID74 <= 15) %>% 
   ggplot() + 
@@ -169,16 +180,17 @@ nc_flat %>%
   geom_sf_countync() + 
   aes(fill = SID74)
 
-
 nc_flat %>% 
   mutate(SID74 = ifelse(SID74 > 15, NA, SID74)) %>% 
   ggplot() + 
-  aes(fips =FIPS) +
+  aes(fips = FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
 ```
 
-# this right join attempt throws an error. Not sure how to address
+
+
+# this right join attempt throws an error. Not sure why how to address.  But also thinking maybe inner join is the right default at least.
 
 ```{r, error=T}
 compute_county_nc <- function(data, scales, county = NULL){
