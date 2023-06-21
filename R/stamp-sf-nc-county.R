@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' library(dplyr)
-#' nc_flat |> rename(fips = FIPS) |> compute_county_nc() |> head()
+#' nc_flat |> rename(fips = FIPS) |> compute_county_nc() |> head() |> str()
 #' nc_flat |> rename(fips = FIPS) |> compute_county_nc(county = "Ashe")
 compute_county_nc_stamp <- function(data, scales, county = NULL){
 
@@ -63,13 +63,18 @@ StatCountyncstamp <- ggplot2::ggproto(`_class` = "StatCountyncstamp",
 #' @export
 #'
 #' @examples
+#' library(ggplot2)
+#' ggplot() +
+#' stamp_sf_countync()
 stamp_sf_countync <- function(
                                  mapping = NULL,
                                  data = NULL,
                                  position = "identity",
                                  na.rm = FALSE,
                                  show.legend = NA,
-                                 inherit.aes = TRUE, crs = "NAD27", ...
+                                 inherit.aes = TRUE,
+                                 crs = "NAD27", #WGS84, NAD83
+                                 ...
                                  ) {
 
                                  c(ggplot2::layer_sf(
@@ -81,7 +86,10 @@ stamp_sf_countync <- function(
                                    show.legend = show.legend,
                                    inherit.aes = inherit.aes,
                                    params = rlang::list2(na.rm = na.rm, ...)),
-                                   coord_sf(crs = crs, default = TRUE)
+                                   coord_sf(crs = crs,
+                                            # default_crs = sf::st_crs(crs),
+                                            # datum = sf::st_crs(crs),
+                                            default = TRUE)
                                  )
 
 }

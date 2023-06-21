@@ -21,3 +21,10 @@ geom_sf_countync(
 \description{
 Title
 }
+\examples{
+library(ggplot2)
+nc_flat \%>\%
+ggplot() +
+aes(fips = FIPS) +
+geom_sf_countync()
+}

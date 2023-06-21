@@ -21,3 +21,8 @@ stamp_sf_countync(
 \description{
 Title
 }
+\examples{
+library(ggplot2)
+ggplot() +
+stamp_sf_countync()
+}

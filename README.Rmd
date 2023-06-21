@@ -49,7 +49,8 @@ names(nc)
 
 nc %>% 
   ggplot() + 
-  geom_sf() ->
+  geom_sf() + 
+  aes(fill = SID74)  ->
 classic_approach
 
 classic_approach
@@ -66,15 +67,24 @@ library(tidyverse)
 nc_flat %>%
   ggplot() +
   aes(fips = FIPS) +
-  geom_sf_countync() ->
+  geom_sf_countync() + 
+  aes(fill = SID74)  ->
 flat_file_friendly_approach
 
 flat_file_friendly_approach
+```
 
+# more dynamic color
+
+```{r}
 last_plot() + 
   aes(fill = SID74) +
   scale_fill_viridis_c()
+```
 
+# highlighting via in-situ subsetting
+
+```{r}
 last_plot() + 
   geom_sf_countync(county = "Ashe", color = "red", lwd = .5)
 
@@ -85,6 +95,7 @@ last_plot() +
                    
 ```
 
+# using stamp convenience function.
 
 ```{r}
 nc_flat %>% 
@@ -106,6 +117,36 @@ nc_flat %>%
   ggnc:::stamp_sf_nc_alamance(fill = "darkred") + 
   ggnc:::stamp_sf_nc_beaufort(fill = "green")
 ```
+
+# Annotation
+
+```{r}
+ggnc::nc_flat %>%
+  ggplot() +
+  aes(fips = FIPS, label = NAME) +
+  geom_label_nc_county()
+
+ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, label = NAME) +
+ geom_sf_countync() +
+ geom_label_nc_county()
+
+ ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, label = SID74, fill = SID74) +
+ geom_sf_countync() +
+ geom_label_nc_county(color = "oldlace")
+ 
+ ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, fill = SID74,
+     label = paste0(NAME, "\n", SID74)) +
+ geom_sf_countync() +
+ geom_label_nc_county(lineheight = .7,
+ size = 2, check_overlap= T, color = "oldlace")
+```
+
 
 ## mostly there!
 
@@ -187,6 +228,8 @@ nc_flat %>%
   geom_sf_countync() + 
   aes(fill = SID74)
 ```
+
+
 
 
 
@@ -275,3 +318,5 @@ Backtrace:
  8. ggplot2 (local) train_scales(...)
  9. ggplot2:::scale_apply(layer_data, x_vars, "train", SCALE_X, x_scales)
  ```
+ 
+ 

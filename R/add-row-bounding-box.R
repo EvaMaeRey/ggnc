@@ -28,10 +28,10 @@ add_row_bounding_box <- function(data = nc){
 
   for (i in 1:nrow(data)){
 
-    if(i == 1){df <- data[i,] %>% st_bbox() %>% bbox_to_df() }else{
+    if(i == 1){df <- data[i,] %>% sf::st_bbox() %>% bbox_to_df() }else{
 
       dplyr::bind_rows(df,
-                       data[i,] %>% st_bbox() %>% bbox_to_df()) ->
+                       data[i,] %>% sf::st_bbox() %>% bbox_to_df()) ->
         df
     }
 

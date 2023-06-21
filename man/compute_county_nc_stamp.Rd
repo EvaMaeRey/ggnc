@@ -14,6 +14,6 @@ Title
 }
 \examples{
 library(dplyr)
-nc_flat |> rename(fips = FIPS) |> compute_county_nc() |> head()
+nc_flat |> rename(fips = FIPS) |> compute_county_nc() |> head() |> str()
 nc_flat |> rename(fips = FIPS) |> compute_county_nc(county = "Ashe")
 }

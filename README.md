@@ -61,7 +61,8 @@ names(nc)
 
 nc %>% 
   ggplot() + 
-  geom_sf() ->
+  geom_sf() + 
+  aes(fill = SID74)  ->
 classic_approach
 
 classic_approach
@@ -79,30 +80,37 @@ library(tidyverse)
 nc_flat %>%
   ggplot() +
   aes(fips = FIPS) +
-  geom_sf_countync() ->
+  geom_sf_countync() + 
+  aes(fill = SID74)  ->
 flat_file_friendly_approach
 
 flat_file_friendly_approach
+#> Joining with `by = join_by(fips)`
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-``` r
+# more dynamic color
 
+``` r
 last_plot() + 
   aes(fill = SID74) +
   scale_fill_viridis_c()
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+# highlighting via in-situ subsetting
 
 ``` r
-
 last_plot() + 
   geom_sf_countync(county = "Ashe", color = "red", lwd = .5)
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ``` r
 
@@ -110,9 +118,14 @@ last_plot() +
 last_plot() + 
   geom_sf_countync(county = c("Alleghany", "Warren"), 
                    color = "plum", lwd = .5)
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
+
+# using stamp convenience function.
 
 ``` r
 nc_flat %>% 
@@ -126,9 +139,15 @@ nc_flat %>%
   aes(fill = rank) + 
   geom_sf_countync() +
   facet_wrap(~name)
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ``` r
 
@@ -138,9 +157,63 @@ nc_flat %>%
   geom_sf_countync() +
   ggnc:::stamp_sf_nc_alamance(fill = "darkred") + 
   ggnc:::stamp_sf_nc_beaufort(fill = "green")
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
+
+# Annotation
+
+``` r
+ggnc::nc_flat %>%
+  ggplot() +
+  aes(fips = FIPS, label = NAME) +
+  geom_label_nc_county()
+#> Joining with `by = join_by(fips)`
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+``` r
+
+ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, label = NAME) +
+ geom_sf_countync() +
+ geom_label_nc_county()
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+```
+
+<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
+
+``` r
+
+ ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, label = SID74, fill = SID74) +
+ geom_sf_countync() +
+ geom_label_nc_county(color = "oldlace")
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+```
+
+<img src="man/figures/README-unnamed-chunk-7-3.png" width="100%" />
+
+``` r
+ 
+ ggnc::nc_flat %>%
+ ggplot() +
+ aes(fips = FIPS, fill = SID74,
+     label = paste0(NAME, "\n", SID74)) +
+ geom_sf_countync() +
+ geom_label_nc_county(lineheight = .7,
+ size = 2, check_overlap= T, color = "oldlace")
+#> Joining with `by = join_by(fips)`
+#> Joining with `by = join_by(fips)`
+```
+
+<img src="man/figures/README-unnamed-chunk-7-4.png" width="100%" />
 
 ## mostly there\!
 
@@ -150,48 +223,51 @@ identical(flat_file_friendly_approach, classic_approach)
 library(patchwork)
 
 flat_file_friendly_approach + classic_approach
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ``` r
 
 flat_file_friendly_approach / classic_approach
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
 
 ``` r
 layer_data(classic_approach) %>% head()
-#>                         geometry PANEL group      xmin      xmax     ymin
-#> 1 MULTIPOLYGON (((-81.47276 3...     1    -1 -84.32385 -75.45698 33.88199
-#> 2 MULTIPOLYGON (((-81.23989 3...     1    -1 -84.32385 -75.45698 33.88199
-#> 3 MULTIPOLYGON (((-80.45634 3...     1    -1 -84.32385 -75.45698 33.88199
-#> 4 MULTIPOLYGON (((-76.00897 3...     1    -1 -84.32385 -75.45698 33.88199
-#> 5 MULTIPOLYGON (((-77.21767 3...     1    -1 -84.32385 -75.45698 33.88199
-#> 6 MULTIPOLYGON (((-76.74506 3...     1    -1 -84.32385 -75.45698 33.88199
-#>       ymax linetype alpha stroke
-#> 1 36.58965        1    NA    0.5
-#> 2 36.58965        1    NA    0.5
-#> 3 36.58965        1    NA    0.5
-#> 4 36.58965        1    NA    0.5
-#> 5 36.58965        1    NA    0.5
-#> 6 36.58965        1    NA    0.5
+#>      fill                       geometry PANEL group      xmin      xmax
+#> 1 #142E47 MULTIPOLYGON (((-81.47276 3...     1    -1 -84.32385 -75.45698
+#> 2 #132B43 MULTIPOLYGON (((-81.23989 3...     1    -1 -84.32385 -75.45698
+#> 3 #1A3955 MULTIPOLYGON (((-80.45634 3...     1    -1 -84.32385 -75.45698
+#> 4 #142E47 MULTIPOLYGON (((-76.00897 3...     1    -1 -84.32385 -75.45698
+#> 5 #204464 MULTIPOLYGON (((-77.21767 3...     1    -1 -84.32385 -75.45698
+#> 6 #1D3E5D MULTIPOLYGON (((-76.74506 3...     1    -1 -84.32385 -75.45698
+#>       ymin     ymax linetype alpha stroke
+#> 1 33.88199 36.58965        1    NA    0.5
+#> 2 33.88199 36.58965        1    NA    0.5
+#> 3 33.88199 36.58965        1    NA    0.5
+#> 4 33.88199 36.58965        1    NA    0.5
+#> 5 33.88199 36.58965        1    NA    0.5
+#> 6 33.88199 36.58965        1    NA    0.5
 layer_data(flat_file_friendly_approach) %>% head()
-#>                         geometry PANEL group      xmin      xmax     ymin
-#> 1 MULTIPOLYGON (((-81.47276 3...     1    -1 -81.74107 -81.23989 36.23436
-#> 2 MULTIPOLYGON (((-81.23989 3...     1    -1 -81.34754 -80.90344 36.36536
-#> 3 MULTIPOLYGON (((-80.45634 3...     1    -1 -80.96577 -80.43531 36.23388
-#> 4 MULTIPOLYGON (((-76.00897 3...     1    -1 -76.33025 -75.77316 36.07282
-#> 5 MULTIPOLYGON (((-77.21767 3...     1    -1 -77.90121 -77.07531 36.16277
-#> 6 MULTIPOLYGON (((-76.74506 3...     1    -1 -77.21767 -76.70750 36.23024
-#>       ymax linetype alpha stroke
-#> 1 36.58965        1    NA    0.5
-#> 2 36.57286        1    NA    0.5
-#> 3 36.56521        1    NA    0.5
-#> 4 36.55716        1    NA    0.5
-#> 5 36.55629        1    NA    0.5
-#> 6 36.55629        1    NA    0.5
+#> Joining with `by = join_by(fips)`
+#>      fill                       geometry PANEL group      xmin      xmax
+#> 1 #142E47 MULTIPOLYGON (((-81.47276 3...     1    -1 -81.74107 -81.23989
+#> 2 #132B43 MULTIPOLYGON (((-81.23989 3...     1    -1 -81.34754 -80.90344
+#> 3 #1A3955 MULTIPOLYGON (((-80.45634 3...     1    -1 -80.96577 -80.43531
+#> 4 #142E47 MULTIPOLYGON (((-76.00897 3...     1    -1 -76.33025 -75.77316
+#> 5 #204464 MULTIPOLYGON (((-77.21767 3...     1    -1 -77.90121 -77.07531
+#> 6 #1D3E5D MULTIPOLYGON (((-76.74506 3...     1    -1 -77.21767 -76.70750
+#>       ymin     ymax linetype alpha stroke
+#> 1 36.23436 36.58965        1    NA    0.5
+#> 2 36.36536 36.57286        1    NA    0.5
+#> 3 36.23388 36.56521        1    NA    0.5
+#> 4 36.07282 36.55716        1    NA    0.5
+#> 5 36.16277 36.55629        1    NA    0.5
+#> 6 36.23024 36.55629        1    NA    0.5
 
 layer_scales(classic_approach) %>% head()
 #> $x
@@ -204,6 +280,7 @@ layer_scales(classic_approach) %>% head()
 #>  Range:  33.9 -- 36.6
 #>  Limits: 33.9 -- 36.6
 layer_scales(flat_file_friendly_approach) %>% head()
+#> Joining with `by = join_by(fips)`
 #> $x
 #> <ScaleContinuousPosition>
 #>  Range:  -84.3 -- -75.5
@@ -215,9 +292,10 @@ layer_scales(flat_file_friendly_approach) %>% head()
 #>  Limits: 33.9 -- 36.6
 
 layer_grob(classic_approach)[[1]]
-#> pathgrob[GRID.pathgrob.708]
+#> pathgrob[GRID.pathgrob.928]
 layer_grob(flat_file_friendly_approach)[[1]]
-#> pathgrob[GRID.pathgrob.709]
+#> Joining with `by = join_by(fips)`
+#> pathgrob[GRID.pathgrob.929]
 ```
 
 ## greedy aes behavior in all sf layers makes for clunkier interface
@@ -232,7 +310,7 @@ nc_flat %>%
   aes(fips = fips)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
 ## might be nice to keep *all* of the reference geometries
 
@@ -246,9 +324,10 @@ nc_flat %>%
   aes(fips =FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
 ``` r
 
@@ -259,7 +338,7 @@ nc %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-2.png" width="100%" />
 
 ``` r
 
@@ -269,9 +348,10 @@ nc_flat %>%
   aes(fips =FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-3.png" width="100%" />
 
 ``` r
 
@@ -282,9 +362,10 @@ nc_flat %>%
   stamp_sf_countync(fill = "darkgrey") +
   geom_sf_countync() + 
   aes(fill = SID74)
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-4.png" width="100%" />
 
 ``` r
 
@@ -294,9 +375,10 @@ nc_flat %>%
   aes(fips = FIPS) +
   geom_sf_countync() + 
   aes(fill = SID74)
+#> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-5.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-5.png" width="100%" />
 
 # this right join attempt throws an error. Not sure why how to address. But also thinking maybe inner join is the right default at least.
 

@@ -35,11 +35,15 @@ compute_county_nc <- function(data, scales, county = NULL){
 
 
   data %>%
-    dplyr::inner_join(reference_filtered, by = join_by(fips)) %>%
+    dplyr::inner_join(reference_filtered) %>% # , by = join_by(fips)
     dplyr::mutate(group = -1) %>%
-    dplyr::select(-fips)
+    dplyr::select(-fips) #%>%
+    # sf::st_as_sf() %>%
+    # sf::st_transform(crs = 5070)
 
 }
+
+
 
 
 StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
@@ -47,7 +51,6 @@ StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
                                compute_panel = compute_county_nc,
                                default_aes = ggplot2::aes(geometry =
                                                             ggplot2::after_stat(geometry)))
-
 
 
 #' Title
@@ -64,6 +67,11 @@ StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
 #' @export
 #'
 #' @examples
+#' library(ggplot2)
+#' nc_flat %>%
+#' ggplot() +
+#' aes(fips = FIPS) +
+#' geom_sf_countync()
 geom_sf_countync <- function(
                                  mapping = NULL,
                                  data = NULL,
@@ -71,7 +79,8 @@ geom_sf_countync <- function(
                                  na.rm = FALSE,
                                  show.legend = NA,
                                  inherit.aes = TRUE,
-                                 crs = "NAD27", ...
+                                 crs = "NAD27", # "NAD27", 5070, "WGS84", "NAD83", 4326 , 3857
+                                 ...
                                  ) {
 
                                  c(ggplot2::layer_sf(
@@ -83,13 +92,13 @@ geom_sf_countync <- function(
                                    show.legend = show.legend,
                                    inherit.aes = inherit.aes,
                                    params = rlang::list2(na.rm = na.rm, ...)),
-                                   coord_sf(crs = crs, default = TRUE)
+                                   coord_sf(crs = crs,
+                                            default_crs = sf::st_crs(crs),
+                                            datum = crs,
+                                            default = TRUE)
                                  )
 
 }
-
-
-
 
 
 
