@@ -1,3 +1,5 @@
+################# Compute panel function ###########
+
 #' Title
 #'
 #' @param data
@@ -44,7 +46,7 @@ compute_county_nc <- function(data, scales, county = NULL){
 }
 
 
-
+###### Specify ggproto ###############
 
 StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
                                `_inherit` = ggplot2::Stat,
@@ -52,6 +54,9 @@ StatCountync <- ggplot2::ggproto(`_class` = "StatCountync",
                                default_aes = ggplot2::aes(geometry =
                                                             ggplot2::after_stat(geometry)))
 
+
+
+########### geom function, inherits from sf ##################
 
 #' Title
 #'
