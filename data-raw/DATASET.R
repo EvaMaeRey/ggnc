@@ -13,7 +13,7 @@ usethis::use_data(nc, overwrite = TRUE)
 #### 1, create polygon reference dataframe w xmin, ymin, xmax and ymax and save
 reference_full <- nc |>
   ggnc::create_geometries_reference(
-                            id_cols = c(NAME, FIPS)) %>%
+                            id_cols = c(NAME, FIPS)) |>
   dplyr::rename(county_name = NAME,
          fips = FIPS)
 

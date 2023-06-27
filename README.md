@@ -7,15 +7,37 @@
 
 <!-- badges: end -->
 
-The goal of ggnc is to allow you to easily create maps of North Carolina
-Counties from flat data. Flat files will contain ids and characteristics
-of a county, but not the longitude and latitudes that define the
-parimeters of the counties.
+The goal of `ggnc` is to allow you to easily create maps of North
+Carolina Counties from flat data. Flat files will contain ids and
+characteristics of a county, but not the longitude and latitudes that
+define the parimeters of the counties.
 
 North Carolina is the worked example in the sf package, for this reason,
 ggnc as an extension package deserves special attention and polishing as
 a possible reference point for other projects like ggfips, ggbrazil,
 ggswitzerland, ggunitedstates, etc.
+
+Using function in ggnc, you can create the ggnorthcarolina package (or
+peices of it as desired) in a relatively step by step fashion - and that
+might be a good jumping off point for modifying to ggbrasil etc.
+
+Here is a suggested workflow, inspect each file as you go… :
+
+``` r
+devtools::create()            # creates package project structure
+usethis::use_data_raw()       # creates folder to create package data
+ggnc::create_dataset_script() # create reference data generating code
+source("data-raw/DATASET.R")  # execute code to write reference data
+devtools::document()          # make reference data available in rest package
+ggnc::create_geom_script()    # create geom function and test it out
+devtools::load_all("R/geom.R")
+ggnc::create_stamp_script()   # create stamp function
+devtools::load_all("R/stamp.R")
+ggnc::create_labels_script()  # create label function
+devtools::load_all("R/labels.R")
+devtools::load_all()          # load all functions and try together
+# adapt to use case! 
+```
 
 ## Installation
 
@@ -68,7 +90,7 @@ classic_approach
 classic_approach
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 However, sometimes analysts will only have flat files as an initial
 starting point. They won’t have this special geometry column at their
@@ -88,7 +110,7 @@ flat_file_friendly_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 # more dynamic color
 
@@ -99,7 +121,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 # highlighting via in-situ subsetting
 
@@ -110,7 +132,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ``` r
 
@@ -123,7 +145,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
 
 # using stamp convenience function.
 
@@ -147,7 +169,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 ``` r
 
@@ -160,7 +182,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
 
 # Annotation
 
@@ -172,7 +194,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ``` r
 
@@ -185,7 +207,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
 
 ``` r
 
@@ -198,7 +220,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />
 
 ``` r
  
@@ -213,7 +235,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-4.png" width="100%" />
 
 ## mostly there\!
 
@@ -226,7 +248,7 @@ flat_file_friendly_approach + classic_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 ``` r
 
@@ -234,7 +256,7 @@ flat_file_friendly_approach / classic_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-2.png" width="100%" />
 
 ``` r
 layer_data(classic_approach) %>% head()
@@ -310,7 +332,7 @@ nc_flat %>%
   aes(fips = fips)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
 ## might be nice to keep *all* of the reference geometries
 
@@ -327,7 +349,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
 
 ``` r
 
@@ -338,7 +360,7 @@ nc %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-2.png" width="100%" />
 
 ``` r
 
@@ -351,7 +373,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-3.png" width="100%" />
 
 ``` r
 
@@ -365,7 +387,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-4.png" width="100%" />
 
 ``` r
 
@@ -378,7 +400,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-5.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-5.png" width="100%" />
 
 # this right join attempt throws an error. Not sure why how to address. But also thinking maybe inner join is the right default at least.
 

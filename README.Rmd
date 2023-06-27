@@ -18,9 +18,31 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ggnc is to allow you to easily create maps of North Carolina Counties from flat data. Flat files will contain ids and characteristics of a county, but not the longitude and latitudes that define the parimeters of the counties.  
+The goal of `ggnc` is to allow you to easily create maps of North Carolina Counties from flat data. Flat files will contain ids and characteristics of a county, but not the longitude and latitudes that define the parimeters of the counties.  
 
 North Carolina is the worked example in the sf package, for this reason, ggnc as an extension package deserves special attention and polishing as a possible reference point for other projects like ggfips, ggbrazil, ggswitzerland, ggunitedstates, etc. 
+
+Using function in ggnc, you can create the ggnorthcarolina package (or peices of it as desired) in a relatively step by step fashion - and that might be a good jumping off point for modifying to ggbrasil etc.
+
+Here is a suggested workflow, inspect each file as you go... : 
+
+```{r, eval = F}
+devtools::create()            # creates package project structure
+usethis::use_data_raw()       # creates folder to create package data
+ggnc::create_dataset_script() # create reference data generating code
+source("data-raw/DATASET.R")  # execute code to write reference data
+devtools::document()          # make reference data available in rest package
+ggnc::create_geom_script()    # create geom function and test it out
+devtools::load_all("R/geom.R")
+ggnc::create_stamp_script()   # create stamp function
+devtools::load_all("R/stamp.R")
+ggnc::create_labels_script()  # create label function
+devtools::load_all("R/labels.R")
+devtools::load_all()          # load all functions and try together
+# adapt to use case! 
+```
+
+
 
 ## Installation
 

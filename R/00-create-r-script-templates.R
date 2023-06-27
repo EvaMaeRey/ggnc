@@ -7,7 +7,7 @@
 #'
 #' @examples
 create_labels_script <- function(path = "R/labels.R"){
-  writeLines(labels_script)
+  writeLines(text = labels_script, con = path)
 }
 
 #' Title
@@ -19,7 +19,7 @@ create_labels_script <- function(path = "R/labels.R"){
 #'
 #' @examples
 create_stamp_script <- function(path = "R/stamp.R"){
-  writeLines(stamp_script, con = path)
+  writeLines(text = stamp_script, con = path)
 }
 
 #' Title
@@ -31,7 +31,7 @@ create_stamp_script <- function(path = "R/stamp.R"){
 #'
 #' @examples
 create_geom_script <- function(path = "R/geom.R"){
-  writeLines(stamp_script, con = path)
+  writeLines(text = geom_script, con = path)
 }
 
 #' Title
