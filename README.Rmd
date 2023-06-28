@@ -24,6 +24,11 @@ North Carolina is the worked example in the sf package, for this reason, ggnc as
 
 Using function in ggnc, you can create the ggnorthcarolina package (or peices of it as desired) in a relatively step by step fashion - and that might be a good jumping off point for modifying to ggbrasil etc.
 
+ggnc performs some convinient data manipulations that you will need for creating the reference dataframes required
+
+
+
+
 Here is a suggested workflow, inspect each file as you go... : 
 
 ```{r, eval = F}
@@ -42,6 +47,23 @@ devtools::load_all()          # load all functions and try together
 # adapt to use case! 
 ```
 
+Or simply fork ggnorthcarolina, and go throught the files and modify as needed. 
+
+ggnc provides some helper functions to prep reference data, that you will see in the DATASET.R file.
+
+```{r, eval = FALSE}
+ggnc::prepare_polygon_labeling_data()
+ggnc::bbox_to_df()
+ggnc::create_geometries_reference()
+```
+
+---
+
+How do we keep ggnorthcarolina even with ggnc?
+
+```{r}
+source("data-raw/reference_code.R") # updates scripts text
+```
 
 
 ## Installation

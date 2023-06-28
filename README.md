@@ -21,6 +21,9 @@ Using function in ggnc, you can create the ggnorthcarolina package (or
 peices of it as desired) in a relatively step by step fashion - and that
 might be a good jumping off point for modifying to ggbrasil etc.
 
+ggnc performs some convinient data manipulations that you will need for
+creating the reference dataframes required
+
 Here is a suggested workflow, inspect each file as you go… :
 
 ``` r
@@ -37,6 +40,35 @@ ggnc::create_labels_script()  # create label function
 devtools::load_all("R/labels.R")
 devtools::load_all()          # load all functions and try together
 # adapt to use case! 
+```
+
+Or simply fork ggnorthcarolina, and go throught the files and modify as
+needed.
+
+ggnc provides some helper functions to prep reference data, that you
+will see in the DATASET.R file.
+
+``` r
+ggnc::prepare_polygon_labeling_data()
+ggnc::bbox_to_df()
+ggnc::create_geometries_reference()
+```
+
+-----
+
+How do we keep ggnorthcarolina even with ggnc?
+
+``` r
+source("data-raw/reference_code.R") # updates scripts text
+#> ✔ Setting active project to '/Users/evangelinereynolds/Google Drive/r_packages/ggnc'
+#> ✔ Saving 'geom_script' to 'data/geom_script.rda'
+#> • Document your data (see 'https://r-pkgs.org/data.html')
+#> ✔ Saving 'stamp_script' to 'data/stamp_script.rda'
+#> • Document your data (see 'https://r-pkgs.org/data.html')
+#> ✔ Saving 'labels_script' to 'data/labels_script.rda'
+#> • Document your data (see 'https://r-pkgs.org/data.html')
+#> ✔ Saving 'dataset_script' to 'data/dataset_script.rda'
+#> • Document your data (see 'https://r-pkgs.org/data.html')
 ```
 
 ## Installation
@@ -90,7 +122,7 @@ classic_approach
 classic_approach
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 However, sometimes analysts will only have flat files as an initial
 starting point. They won’t have this special geometry column at their
@@ -110,7 +142,7 @@ flat_file_friendly_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 # more dynamic color
 
@@ -121,7 +153,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 # highlighting via in-situ subsetting
 
@@ -132,7 +164,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ``` r
 
@@ -145,7 +177,7 @@ last_plot() +
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
 
 # using stamp convenience function.
 
@@ -169,7 +201,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 ``` r
 
@@ -182,7 +214,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-2.png" width="100%" />
 
 # Annotation
 
@@ -194,7 +226,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
 ``` r
 
@@ -207,7 +239,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-2.png" width="100%" />
 
 ``` r
 
@@ -220,7 +252,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-3.png" width="100%" />
 
 ``` r
  
@@ -235,7 +267,7 @@ ggnc::nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-4.png" width="100%" />
 
 ## mostly there\!
 
@@ -248,7 +280,7 @@ flat_file_friendly_approach + classic_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
 ``` r
 
@@ -256,7 +288,7 @@ flat_file_friendly_approach / classic_approach
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-2.png" width="100%" />
 
 ``` r
 layer_data(classic_approach) %>% head()
@@ -332,7 +364,7 @@ nc_flat %>%
   aes(fips = fips)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
 
 ## might be nice to keep *all* of the reference geometries
 
@@ -349,7 +381,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" />
 
 ``` r
 
@@ -360,7 +392,7 @@ nc %>%
   aes(fill = SID74)
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-2.png" width="100%" />
 
 ``` r
 
@@ -373,7 +405,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-3.png" width="100%" />
 
 ``` r
 
@@ -387,7 +419,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-4.png" width="100%" />
 
 ``` r
 
@@ -400,7 +432,7 @@ nc_flat %>%
 #> Joining with `by = join_by(fips)`
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-5.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-14-5.png" width="100%" />
 
 # this right join attempt throws an error. Not sure why how to address. But also thinking maybe inner join is the right default at least.
 
